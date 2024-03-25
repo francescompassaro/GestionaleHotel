@@ -110,6 +110,23 @@ public class ProgettoDiGruppoProva extends JFrame {
 	private JTextArea outputAreaServiziPlus;
 	private JTextArea outputAreaFormulaDiSoggiorno;
 	private JTextArea outputAreaDipendenti;
+	public  JPanel panel1;
+	public  JPanel panel2;
+	public  JPanel panel3;
+	public  JPanel panel4;	
+	public  JPanel panel5;
+	public  JPanel panel6;
+	public  JPanel imagePanelStanze;
+	public  JScrollPane scrollPaneStanze;
+	public  JPanel buttonPanelStanze;
+	public  JButton addButtonStanze;
+	public  JButton viewButtonStanze;
+	public  JButton updateButtonStanze;
+	public  JButton deleteButtonStanze;
+	public  JTabbedPane tabbedPane;
+	
+
+	
 	
 	public ProgettoDiGruppoProva(String ruolo) {
 		setTitle("GESTIONALE HOTEL");
@@ -118,9 +135,6 @@ public class ProgettoDiGruppoProva extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		
-		/* RICHIAMA METODO CHE MOSTRA SOLO FUNZIONI PER RUOLO*/
-		
 		createTableStanzeIFNotExists();
 		createTableAnagraficaOspitiIFNotExists();
 		createTableServiziPlusIFNotExists();
@@ -128,16 +142,16 @@ public class ProgettoDiGruppoProva extends JFrame {
 		createTableDipendentiIFNotExists();
 		
 	
-		
 		// *creazione di un pannello tabulare********************
-		JTabbedPane tabbedPane = new JTabbedPane();
+		this.tabbedPane = new JTabbedPane();
 		
 		//creazione di pannelli per il nostro tabbedPane
-		JPanel panel1 = new JPanel(new BorderLayout());
-		JPanel panel2 = new JPanel(new BorderLayout());
+		panel1 = new JPanel(new BorderLayout());
+		panel2 = new JPanel(new BorderLayout());
 		JPanel panel3 = new JPanel(new BorderLayout());
 		JPanel panel4 = new JPanel(new BorderLayout());
 		JPanel panel5 = new JPanel(new BorderLayout());
+		JPanel panel6 = new JPanel(new BorderLayout());
 
 		//richiamo dei vari outputArea che metteremo in ogni panel corrispondente
 		outputAreaStanze = new JTextArea();
@@ -158,14 +172,14 @@ public class ProgettoDiGruppoProva extends JFrame {
 		
 		
 		//creazione dei vari scrollPane
-		JScrollPane scrollPaneStanze = new JScrollPane(outputAreaStanze);
+		scrollPaneStanze = new JScrollPane(outputAreaStanze);
 		JScrollPane scrollPaneAnagraficaOspiti = new JScrollPane(outputAreaAnagraficaOspiti);
 		JScrollPane scrollPaneServiziPlus = new JScrollPane(outputAreaServiziPlus);
 		JScrollPane scrollPaneFormulaDiSoggiorno = new JScrollPane(outputAreaFormulaDiSoggiorno);
 		JScrollPane scrollPaneDipendenti = new JScrollPane(outputAreaDipendenti);
 		
 		//creazione di un panel per eventuali immagini da aggiungere sulla destra
-		JPanel imagePanelStanze = new JPanel();
+		imagePanelStanze = new JPanel();
 		imagePanelStanze.setPreferredSize(new Dimension(250,450));
 		imagePanelStanze.setBackground(Color.GRAY);
 		
@@ -191,13 +205,13 @@ public class ProgettoDiGruppoProva extends JFrame {
 		//imposto un font per  le scritte sui bottoni
 		Font buttonFont = new Font("Arial", Font.BOLD, 16);
 		
-		JButton addButtonStanze = new JButton("Aggiungi");
+		addButtonStanze = new JButton("Aggiungi");
 		addButtonStanze.setFont(buttonFont);
-		JButton viewButtonStanze = new JButton("Aggiorna");
+		viewButtonStanze = new JButton("Aggiorna");
 		viewButtonStanze.setFont(buttonFont);
-		JButton updateButtonStanze = new JButton("Modifica");
+		updateButtonStanze = new JButton("Modifica");
 		updateButtonStanze.setFont(buttonFont);
-		JButton deleteButtonStanze = new JButton("Elimina");
+		deleteButtonStanze = new JButton("Elimina");
 		deleteButtonStanze.setFont(buttonFont);
 		
 
@@ -207,19 +221,15 @@ public class ProgettoDiGruppoProva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//metodo da inserire!!!!!!!
 				aggiungiStanze();
-				
 			}
 		});
-		
 		viewButtonStanze.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//metodo da inserire!!!!!!!
 				visualizzaStanze();
-				
 			}
 		});
-		
 		
 		updateButtonStanze.addActionListener(new ActionListener() {
 			@Override
@@ -228,8 +238,7 @@ public class ProgettoDiGruppoProva extends JFrame {
 				modificaStanze();
 			}
 		});
-		
-		
+	
 		deleteButtonStanze.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -238,8 +247,7 @@ public class ProgettoDiGruppoProva extends JFrame {
 			}
 		});
 		
-       JPanel buttonPanelStanze = new JPanel();
-		
+		buttonPanelStanze = new JPanel();
 		buttonPanelStanze.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
 		buttonPanelStanze.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
 		buttonPanelStanze.setBackground(Color.GRAY);
@@ -260,7 +268,6 @@ public class ProgettoDiGruppoProva extends JFrame {
 		panel1.add(buttonPanelStanze,BorderLayout.SOUTH);
 		
 		//************************* BUTTON PER PANEL2 OVVERO ANAGRAFICA OSPITI********************
-		
 		JButton addButtonAnagraficaOspiti = new JButton("Aggiungi");
 		addButtonAnagraficaOspiti.setFont(buttonFont);
 		JButton viewButtonAnagraficaOspiti= new JButton("Aggiorna");
@@ -269,32 +276,25 @@ public class ProgettoDiGruppoProva extends JFrame {
 		updateButtonAnagraficaOspiti.setFont(buttonFont);
 		JButton deleteButtonAnagraficaOspiti = new JButton("Elimina");
 		deleteButtonAnagraficaOspiti.setFont(buttonFont);
-		
 
 		//gestiamo il click sui bottoni
 		addButtonAnagraficaOspiti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				aggiungiAnagraficaOspiti();
-				
 			}
 		});
 		
 		viewButtonAnagraficaOspiti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				visualizzaAnagraficaOspiti();
-				
 			}
 		});
-		
 		
 		updateButtonAnagraficaOspiti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				modificaAnagraficaOspiti();
 			}
 		});
@@ -303,18 +303,15 @@ public class ProgettoDiGruppoProva extends JFrame {
 		deleteButtonAnagraficaOspiti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				eliminaAnagraficaOspiti();
 			}
 		});
 		
         JPanel buttonPanelAnagraficaOspiti = new JPanel();
 		
-		buttonPanelAnagraficaOspiti.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
-		
+		buttonPanelAnagraficaOspiti.setLayout(new GridLayout(1,4));//1 riga e 4 colonne		
 		buttonPanelAnagraficaOspiti.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
 		buttonPanelAnagraficaOspiti.setBackground(Color.GRAY);
-
 	
 		GridLayout layout2 = (GridLayout) buttonPanelAnagraficaOspiti.getLayout();
 		layout2.setHgap(hGap);
@@ -323,13 +320,11 @@ public class ProgettoDiGruppoProva extends JFrame {
 		buttonPanelAnagraficaOspiti.add(viewButtonAnagraficaOspiti);
 		buttonPanelAnagraficaOspiti.add(addButtonAnagraficaOspiti);
 		buttonPanelAnagraficaOspiti.add(updateButtonAnagraficaOspiti);
-		buttonPanelAnagraficaOspiti.add(deleteButtonAnagraficaOspiti);
-		
+		buttonPanelAnagraficaOspiti.add(deleteButtonAnagraficaOspiti);		
 		
 		panel2.add(scrollPaneAnagraficaOspiti,BorderLayout.CENTER);
 		panel2.add(imagePanelAnagraficaOspiti,BorderLayout.EAST);
-		panel2.add(buttonPanelAnagraficaOspiti,BorderLayout.SOUTH);
-		
+		panel2.add(buttonPanelAnagraficaOspiti,BorderLayout.SOUTH);		
 		
 		// *********************** CREAZIONE BUTTON PER PANEL3 OVVERO SERVIZI PLUS ***************************+
 		JButton addButtonServiziPlus = new JButton("Aggiungi");
@@ -339,42 +334,33 @@ public class ProgettoDiGruppoProva extends JFrame {
 		JButton updateButtonServiziPlus = new JButton("Modifica");
 		updateButtonServiziPlus.setFont(buttonFont);
 		JButton deleteButtonServiziPlus = new JButton("Elimina");
-		deleteButtonServiziPlus.setFont(buttonFont);
-		
+		deleteButtonServiziPlus.setFont(buttonFont);		
 
 		//gestiamo il click sui bottoni
 		addButtonServiziPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
-				aggiungiServiziPlus();
-				
+				aggiungiServiziPlus();				
 			}
 		});
 		
 		viewButtonServiziPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				visualizzaServiziPlus();
-				
 			}
 		});
-		
 		
 		updateButtonServiziPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				modificaServiziPlus();
 			}
 		});
 		
-		
 		deleteButtonServiziPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				eliminaServiziPlus();
 			}
 		});
@@ -414,18 +400,14 @@ public class ProgettoDiGruppoProva extends JFrame {
 		addButtonFormulaDiSoggiorno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				aggiungiFormulaDiSoggiorno();
-				
 			}
 		});
 		
 		viewButtonFormulaDiSoggiorno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				visualizzaFormulaDiSoggiorno();
-				
 			}
 		});
 		
@@ -433,28 +415,22 @@ public class ProgettoDiGruppoProva extends JFrame {
 		updateButtonFormulaDiSoggiorno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				modificaFormulaDiSoggiorno();
 			}
 		});
-		
-		
+				
 		deleteButtonFormulaDiSoggiorno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//metodo da inserire!!!!!!!
 				eliminaFormulaDiSoggiorno();
 			}
 		});
 		
-       JPanel buttonPanelFormulaDiSoggiorno = new JPanel();
-		
+		JPanel buttonPanelFormulaDiSoggiorno = new JPanel();
 		buttonPanelFormulaDiSoggiorno.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
-		
 		buttonPanelFormulaDiSoggiorno.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
 		buttonPanelFormulaDiSoggiorno.setBackground(Color.GRAY);
 
-	
 		GridLayout layout4 = (GridLayout) buttonPanelFormulaDiSoggiorno.getLayout();
 		layout4.setHgap(hGap);
 		layout4.setVgap(vGap);
@@ -479,80 +455,84 @@ public class ProgettoDiGruppoProva extends JFrame {
 		JButton deleteButtonDipendenti = new JButton("Elimina");
 		deleteButtonDipendenti.setFont(buttonFont);
 				
+		//gestiamo il click sui bottoni
+        addButtonDipendenti.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+				aggiungiDipendenti();
+			}
+		});
+				
+		viewButtonDipendenti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				visualizzaDipendenti();						
+			}
+		});
+				
+		updateButtonDipendenti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificaDipendenti();
+			}
+		});
+								
+		deleteButtonDipendenti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eliminaDipendenti();
+			}
+		});
+				
+       JPanel buttonPanelDipendenti = new JPanel();
+		
+		buttonPanelDipendenti.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
+		buttonPanelDipendenti.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
+		buttonPanelDipendenti.setBackground(Color.GRAY);
 
-				//gestiamo il click sui bottoni
-		        addButtonDipendenti.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-						//metodo da inserire!!!!!!!
-						aggiungiDipendenti();
-						
-					}
-				});
-				
-				viewButtonDipendenti.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						//metodo da inserire!!!!!!!
-						visualizzaDipendenti();
-						
-					}
-				});
-				
-				
-				updateButtonDipendenti.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						//metodo da inserire!!!!!!!
-						modificaDipendenti();
-					}
-				});
-				
-				
-				deleteButtonDipendenti.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						//metodo da inserire!!!!!!!
-						eliminaDipendenti();
-					}
-				});
-				
-		       JPanel buttonPanelDipendenti = new JPanel();
-				
-				buttonPanelDipendenti.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
-				buttonPanelDipendenti.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
-				buttonPanelDipendenti.setBackground(Color.GRAY);
-
-			
-				GridLayout layout5 = (GridLayout) buttonPanelDipendenti.getLayout();
-				layout5.setHgap(hGap);
-				layout5.setVgap(vGap);
-				
-				
-				buttonPanelDipendenti.add(viewButtonDipendenti);
-				buttonPanelDipendenti.add(addButtonDipendenti);
-				buttonPanelDipendenti.add(updateButtonDipendenti);
-				buttonPanelDipendenti.add(deleteButtonDipendenti); 
-				
-				panel5.add(scrollPaneDipendenti,BorderLayout.CENTER);
-				panel5.add(imagePanelDipendenti,BorderLayout.EAST);
-				panel5.add(buttonPanelDipendenti,BorderLayout.SOUTH);
-				
+	
+		GridLayout layout5 = (GridLayout) buttonPanelDipendenti.getLayout();
+		layout5.setHgap(hGap);
+		layout5.setVgap(vGap);
 		
 		
-
+		buttonPanelDipendenti.add(viewButtonDipendenti);
+		buttonPanelDipendenti.add(addButtonDipendenti);
+		buttonPanelDipendenti.add(updateButtonDipendenti);
+		buttonPanelDipendenti.add(deleteButtonDipendenti); 
+		
+		panel5.add(scrollPaneDipendenti,BorderLayout.CENTER);
+		panel5.add(imagePanelDipendenti,BorderLayout.EAST);
+		panel5.add(buttonPanelDipendenti,BorderLayout.SOUTH);
+	
+		
+       JPanel buttonPanelContabilita = new JPanel();
+		
+       buttonPanelContabilita.setLayout(new GridLayout(1,4));//1 riga e 4 colonne
+       buttonPanelContabilita.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); // Aggiunge un margine al pannello
+       buttonPanelContabilita.setBackground(Color.GRAY);
+       GridLayout layout6 = (GridLayout) buttonPanelDipendenti.getLayout();
+       layout6.setHgap(hGap);
+       layout6.setVgap(vGap);
 		
 		
+       buttonPanelContabilita.add(viewButtonDipendenti);
+       buttonPanelContabilita.add(addButtonDipendenti);
+       buttonPanelContabilita.add(updateButtonDipendenti);
+       buttonPanelContabilita.add(deleteButtonDipendenti); 
+		
+		panel6.add(scrollPaneDipendenti,BorderLayout.CENTER);
+		panel6.add(imagePanelDipendenti,BorderLayout.EAST);
+		panel6.add(buttonPanelDipendenti,BorderLayout.SOUTH);
 		//aggiungiamo i pannelli al tabbedPane
 		tabbedPane.addTab("Stanze               ", panel1);
 		tabbedPane.addTab("Anagrafica Ospiti    ", panel2);
 		tabbedPane.addTab("Servizi Plus         ", panel3);
 		tabbedPane.addTab("Formula di soggiorno ", panel4);
 		tabbedPane.addTab("Dipendenti           ", panel5);
+		tabbedPane.addTab("Contabilità			", panel6);
 		tabbedPane.setFont(new Font("Arial",Font.BOLD,13));
 		
-		
-
 		mainPanel.add(tabbedPane);	
 		
 		visualizzaStanze();
@@ -561,25 +541,30 @@ public class ProgettoDiGruppoProva extends JFrame {
 		visualizzaDipendenti();
 		visualizzaAnagraficaOspiti();
 		
-		add(mainPanel);
-		
-	}
-	
-	//****************** METODI PER STANZE *************************************+
-		private void createTableStanzeIFNotExists() {
-			try {
-				Connection conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
-				Statement stmt = conn.createStatement();
-				stmt.executeUpdate(CREATE_TABLE_QUERY_STANZE);
-				stmt.close();
-				conn.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
+		/* RICHIAMA METODO CHE MOSTRA SOLO FUNZIONI PER RUOLO*/
+		// RICHIAMO DELLA FUNZIONE 
+		if (ruolo.equals("Receptionist")) {
+			accessoPerRuoloReceptionist();
+		}else if (ruolo.equals("Amministrazione")){
+			accessoPerRuoloAmministrazione();	
+			}else {
+				JOptionPane.showMessageDialog(null, "Credenziali errate");
 			}
+		
+		add(mainPanel);
+	}
+	//****************** METODI PER STANZE *************************************+
+	private void createTableStanzeIFNotExists() {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(CREATE_TABLE_QUERY_STANZE);
+			stmt.close();
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
-	
-	
-	
+	}	
 	private void visualizzaStanze() {
 		//metodo per visualizzare
 		outputAreaStanze.setText("");//togliamo tutto ciò che eventualmente c'era all'interno e lo ripuliamo
@@ -1062,10 +1047,22 @@ public class ProgettoDiGruppoProva extends JFrame {
 			}
 		}
 		/* METODO PER MOSTRARE OGGETTI PER RUOLO*/
-		private void showElements(String ruolo) {
-			
+		// RIMUOVIAMO I PENEL O DISABILITIAMO FUNZIONI CHE NON VOGLIAMO FAR VEDERE ALL'UTENTE LOGGATO
+		private void accessoPerRuoloReceptionist() {
+//			scrollPaneStanze.setEnabled(false);
+//			addButtonStanze.setEnabled(false);
+//			viewButtonStanze.setEnabled(false);
+//			updateButtonStanze.setEnabled(false);
+//			deleteButtonStanze.setEnabled(false);
+//			deleteButtonStanze.setVisible(false);
+//			scrollPaneStanze.setVisible(false);
+			tabbedPane.remove(panel6);		// RIMOSSO PANNELLO DELLA CONTABILITÀ PER I RECEPTIONISTS (ESEMPIO)
 		}
-	
+		/* METODO PER MOSTRARE OGGETTI PER RUOLO*/
+		private void accessoPerRuoloAmministrazione() {
+		// RIMUOVIAMO I PENEL O DISABILITIAMO FUNZIONI CHE NON VOGLIAMO FAR VEDERE ALL'UTENTE LOGGATO
+			tabbedPane.remove(panel2);			
+		}
 	
 	private void visualizzaDipendenti() {
 		//metodo per visualizzare
